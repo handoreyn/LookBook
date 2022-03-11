@@ -5,6 +5,16 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.SharedKernel", "Bakery.SharedKernel\Bakery.SharedKernel.csproj", "{0FA04C84-12B4-4676-BDE6-844002776ED0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bakery.Services", "Bakery.Services", "{E014F18A-B475-4387-A508-7C2A69F4FAF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bakery.Member", "Bakery.Member", "{013311D9-EA08-4E50-A3DD-C2019622BB87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Member.Api", "Bakery.Services\Bakery.Member\Bakery.Member.Api\Bakery.Member.Api.csproj", "{8AE73BE6-FD07-4512-92F4-3E7DA40FF1FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Member.Core", "Bakery.Services\Bakery.Member\Bakery.Member.Core\Bakery.Member.Core.csproj", "{6085B861-8525-4AC0-A0FE-478F20E17B46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Member.Infrastructure", "Bakery.Services\Bakery.Member\Bakery.Member.Infrastructure\Bakery.Member.Infrastructure.csproj", "{37D26505-BB97-4A90-A41E-59E4152CFB46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +28,23 @@ Global
 		{0FA04C84-12B4-4676-BDE6-844002776ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FA04C84-12B4-4676-BDE6-844002776ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FA04C84-12B4-4676-BDE6-844002776ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE73BE6-FD07-4512-92F4-3E7DA40FF1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE73BE6-FD07-4512-92F4-3E7DA40FF1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE73BE6-FD07-4512-92F4-3E7DA40FF1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE73BE6-FD07-4512-92F4-3E7DA40FF1FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6085B861-8525-4AC0-A0FE-478F20E17B46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6085B861-8525-4AC0-A0FE-478F20E17B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6085B861-8525-4AC0-A0FE-478F20E17B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6085B861-8525-4AC0-A0FE-478F20E17B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37D26505-BB97-4A90-A41E-59E4152CFB46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37D26505-BB97-4A90-A41E-59E4152CFB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37D26505-BB97-4A90-A41E-59E4152CFB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37D26505-BB97-4A90-A41E-59E4152CFB46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{013311D9-EA08-4E50-A3DD-C2019622BB87} = {E014F18A-B475-4387-A508-7C2A69F4FAF5}
+		{8AE73BE6-FD07-4512-92F4-3E7DA40FF1FB} = {013311D9-EA08-4E50-A3DD-C2019622BB87}
+		{6085B861-8525-4AC0-A0FE-478F20E17B46} = {013311D9-EA08-4E50-A3DD-C2019622BB87}
+		{37D26505-BB97-4A90-A41E-59E4152CFB46} = {013311D9-EA08-4E50-A3DD-C2019622BB87}
 	EndGlobalSection
 EndGlobal
