@@ -21,9 +21,10 @@ Catalog Api will contain book and author informations. Api uses a no-sql(no-sql)
 Keeps registered user informations. Api will use a sql(mssql) database
 
 ### Email Api
-
+Use an Email Api to send emails to customers.
 ### SMS Api
-
+Sending sms to customers 
 ### Payment Api
-
-### Order Api
+Fake payyment api to mocking payment
+### Order
+Order Processing Api
