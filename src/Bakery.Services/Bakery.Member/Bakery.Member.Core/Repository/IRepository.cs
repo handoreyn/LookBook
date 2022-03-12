@@ -19,7 +19,7 @@ public interface IRepository<TEntity> where TEntity : class
     Task UpdateManyAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
 
     void Delete(FilterDefinition<TEntity> filter);
-    Task DelteAsync(FilterDefinition<TEntity> filter);
+    Task DeleteAsync(FilterDefinition<TEntity> filter);
     void DeleteMany(FilterDefinition<TEntity> filter);
     Task DeleteManyAsync(FilterDefinition<TEntity> filter);
 }
