@@ -10,7 +10,7 @@ public abstract class DatabaseContext<TEntity> where TEntity : class
         var clientSettings = new MongoClientSettings
         {
             Server = new MongoServerAddress(configuration["MongoHost"], int.Parse(configuration["MongoPort"])),
-            Credential = MongoCredential.CreateCredential(databaseName: configuration["MongoDbName"],
+            Credential = MongoCredential.CreateCredential(databaseName: configuration["MongoAuthDbName"],
                 username: configuration["MongoDbUsername"],
                 password: configuration["MongoDbPassword"])
         };
