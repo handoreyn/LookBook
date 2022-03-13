@@ -1,3 +1,5 @@
+namespace Bakery.EventBus;
+
 public class InMemoryEventBusSubscriptionEventManager:IEventBusSubscriptionManager
 {
     private readonly Dictionary<string, List<SubscriptionInfo>> _handlers;
@@ -12,7 +14,7 @@ public class InMemoryEventBusSubscriptionEventManager:IEventBusSubscriptionManag
     public bool IsEmpty => !_handlers.Any();
     public void Clear() => _handlers.Clear();
     
-    public event EventHandler<string>? OnEventRemoved;
+    public event EventHandler<string> OnEventRemoved;
 
     public void AddDynamicSubscription<TH>(string eventName) where TH : IDynamicIntegrationEventHandler
         => DoAddSubscription(typeof(TH), eventName, true);
