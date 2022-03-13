@@ -18,11 +18,9 @@ public class MemberController : ControllerBase
     public async Task<IActionResult> Register(MemberRegisterCreateDto model)
     {
         if (!ModelState.IsValid)
-            return BadRequest(new ResponseModel<DtoBase>(HttpStatusCode.BadRequest,
-                "Request model is incorrect"));
+            return BadRequest(new ResponseModel<DtoBase>("Request model is incorrect"));
         if (await _memberRepository.IsMemberExist(model.Username))
-            return BadRequest(new ResponseModel<DtoBase>(HttpStatusCode.BadRequest,
-                "Member already exists!"));
+            return BadRequest(new ResponseModel<DtoBase>("Member already exists!"));
 
         var member = await _memberRepository.Register(model);
         return CreatedAtAction(nameof(MemberProfile), new { id = member.Id }, member);
@@ -33,9 +31,9 @@ public class MemberController : ControllerBase
     public async Task<IActionResult> MemberProfile(string id)
     {
         if (string.IsNullOrEmpty(id))
-            return BadRequest(new ResponseModel<DtoBase>(HttpStatusCode.BadRequest, "Id is required"));
+            return BadRequest(new ResponseModel<DtoBase>("Id is required"));
 
         var memberProfile = await _memberRepository.GetMemberProfileDto(id);
-        return Ok(new ResponseModel<MemberProfileDto>(HttpStatusCode.OK, string.Empty, memberProfile));
+        return Ok(new ResponseModel<MemberProfileDto>(string.Empty, memberProfile));
     }
 }
