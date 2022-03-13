@@ -2,6 +2,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using Bakery.EventBus;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Polly;
@@ -19,19 +20,19 @@ public class EventBusRabbitMQ : IEventBus, IDisposable
     private readonly ILogger<EventBusRabbitMQ> _logger;
     private readonly IEventBusSubscriptionManager _subscriptionManager;
     private readonly int _retryCount;
-    private IServiceProvider _serviceProvider;
+    private readonly IServiceProvider _serviceProvider;
 
     private IModel _consumerChannel;
     private string _queueName;
 
-    public EventBusRabbitMQ(IRabbitMQPersistentConnection persistentConnection, ILogger<EventBusRabbitMQ> logger, IEventBusSubscriptionManager subscriptionManager, IServiceProvider serviceProvider, int retryCount=5, string queueName =null)
+    public EventBusRabbitMQ(IRabbitMQPersistentConnection persistentConnection, ILogger<EventBusRabbitMQ> logger, IEventBusSubscriptionManager subscriptionManager, IServiceProvider serviceProvider, IConfiguration configuration)
     {
         _persistentConnection = persistentConnection?? throw new ArgumentNullException(nameof(persistentConnection));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _serviceProvider = serviceProvider;
         _subscriptionManager = subscriptionManager ?? new InMemoryEventBusSubscriptionEventManager();
-        _retryCount = retryCount;
-        _queueName = queueName;
+        _retryCount = int.Parse(configuration["EventBusRetryCount"]);
+        _queueName = null;
         _consumerChannel = CreateConsumerChannel();
         _subscriptionManager.OnEventRemoved+=SubscriptionManagerOnOnEventRemoved;
     }

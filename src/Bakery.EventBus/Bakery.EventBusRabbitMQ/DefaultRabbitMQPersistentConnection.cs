@@ -1,4 +1,5 @@
 using System.Net.Sockets;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Retry;
@@ -8,21 +9,27 @@ using RabbitMQ.Client.Exceptions;
 
 namespace Bakery.EventBusRabbitMQ;
 
-public class DefaultRabbitMQPersistenConnection : IRabbitMQPersistentConnection
+public class DefaultRabbitMQPersistentConnection : IRabbitMQPersistentConnection
 {
     private readonly IConnectionFactory _connectionFactory;
-    private readonly ILogger<DefaultRabbitMQPersistenConnection> _logger;
+    private readonly ILogger<DefaultRabbitMQPersistentConnection> _logger;
     private readonly int _retryCount;
     private IConnection _connection;
     private bool _disposed;
 
-    private object sync_root = new ();
+    private readonly object sync_root = new ();
 
-    public DefaultRabbitMQPersistenConnection(IConnectionFactory connectionFactory, ILogger<DefaultRabbitMQPersistenConnection> logger, int retryCount)
+    public DefaultRabbitMQPersistentConnection(ILogger<DefaultRabbitMQPersistentConnection> logger, IConfiguration configuration)
     {
-        _connectionFactory = connectionFactory;
+        _connectionFactory = new ConnectionFactory
+        {
+            HostName = configuration["EventBusConnection"],
+            DispatchConsumersAsync = true,
+            UserName = configuration["EventBusUserName"],
+            Password = configuration["EventBusPassword"]
+        };
         _logger = logger;
-        _retryCount = retryCount;
+        _retryCount = int.Parse(configuration["EventBusRetryCount"]);
     }
 
     public bool IsConnected => _connection is { IsOpen: true } && !_disposed;
