@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Bakery.EventBus\Bakery.EventBus\Bakery.EventBus.csproj" />
     <ProjectReference Include="..\..\..\Bakery.SharedKernel\Bakery.SharedKernel.csproj" />
   </ItemGroup>
 

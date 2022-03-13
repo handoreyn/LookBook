@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-public record IntegrationEvent
+public class IntegrationEvent
 {
     public IntegrationEvent()
     {
