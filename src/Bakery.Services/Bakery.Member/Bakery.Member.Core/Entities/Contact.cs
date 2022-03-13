@@ -11,4 +11,11 @@ public class Contact
     public string Address { get; set; }
     [BsonElement("is_primary")]
     public bool IsPrimary { get; set; }
+
+    public Contact(ContactEnumType contactType, string address, bool isPrimary = false)
+    {
+        ContactType = contactType;
+        Address = address;
+        IsPrimary = isPrimary;
+    }
 }

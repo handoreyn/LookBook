@@ -3,6 +3,7 @@ using MongoDB.Driver;
 
 public abstract class RepositoryBase<TEntity> : DatabaseContext<TEntity>, IRepository<TEntity> where TEntity : class
 {
+    protected readonly FilterDefinitionBuilder<TEntity> Filter = Builders<TEntity>.Filter;
     protected RepositoryBase(IConfiguration configuration) : base(configuration)
     {
     }
