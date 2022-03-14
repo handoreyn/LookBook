@@ -1,6 +1,6 @@
+using Bakery.Member.Core.Dtos.Member;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
-using MongoDB.Driver;
 
 public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
 {
@@ -13,13 +13,13 @@ public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
         var query = Filter.Eq(m => m.Id, ObjectId.Parse(memberId));
         var member = await FindAsync(query);
         if (member == null) throw new MemberNotFoundException(
-             $"Member not found for specified member id: {memberId}");
+            $"Member not found for specified member id: {memberId}");
 
         var profile = new MemberProfileDto
         {
             MemberId = member.Id.ToString(),
             Email = member.ContactInformation.FirstOrDefault(l => l.IsPrimary
-                && l.ContactType == ContactEnumType.email)?.Address,
+                                                                  && l.ContactType == ContactEnumType.email)?.Address,
             CreateDate = member.CreateDate,
             SubscriptionStatus = member.SubscriptionStatus,
             Username = member.Username,
@@ -30,6 +30,48 @@ public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
         return profile;
     }
 
+    public async Task<MemberProfileDto> FindMember(MemberSignInDto model)
+    {
+        var query = Filter.And(
+            Filter.Eq(m => m.Username, model.Username),
+            Filter.Eq(m => m.Password, model.Password));
+
+        var member = await FindAsync(query);
+        if (member == null) throw new MemberNotFoundException("Member not found by specified username & password");
+
+        return new MemberProfileDto
+        {
+            MemberId = member.Id.ToString(),
+            Username = member.Username,
+            CreateDate = member.CreateDate,
+            SubscriptionStatus = member.SubscriptionStatus,
+            ProfilePictureUrl = member.ProfilePicture,
+            Email = member.ContactInformation.FirstOrDefault(l => l.IsPrimary && l.ContactType == ContactEnumType.email)
+                ?.Address,
+            Country = member.Country
+        };
+    }
+
+    public async Task<MemberProfileDto> FindMember(string username)
+    {
+        var query = Filter.Eq(l => l.Username, username);
+        var member = await FindAsync(query);
+        
+        if (member == null) throw new MemberNotFoundException("Member not found by specified username.");
+        
+        return new MemberProfileDto
+        {
+            MemberId = member.Id.ToString(),
+            Username = member.Username,
+            CreateDate = member.CreateDate,
+            SubscriptionStatus = member.SubscriptionStatus,
+            ProfilePictureUrl = member.ProfilePicture,
+            Email = member.ContactInformation.FirstOrDefault(l => l.IsPrimary && l.ContactType == ContactEnumType.email)
+                ?.Address,
+            Country = member.Country
+        };
+    }
+    
     public async Task<bool> IsMemberExist(string username)
     {
         var query = Filter.Eq(m => m.Username, username);
