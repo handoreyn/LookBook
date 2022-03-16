@@ -1,4 +1,4 @@
-namespace Bakery.Member.Core.Events;
+namespace Bakery.Email.Core.Events;
 
 public class MemberSignedInIntegrationEvent : IntegrationEvent
 {

@@ -39,7 +39,7 @@ public class MemberController : ControllerBase
 
         var member = await _memberRepository.FindMember(model);
         // TODO generate JWT
-        await _eventBus.PublishThroughEventBusAsync(new MemberSignedIntegrationEvent(member.MemberId, member.Username,
+        await _eventBus.PublishThroughEventBusAsync(new MemberSignedInIntegrationEvent(member.MemberId, member.Username,
             member.Username, model.Client, model.Location, member.Email));
         // TODO return JWT
         return Ok();

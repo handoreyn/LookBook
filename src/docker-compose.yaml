@@ -4,6 +4,19 @@ networks:
   bakery:
 
 services:
+  rabbitmq:
+    image: rabbitmq:3-management-
+    container_name: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=mail    
+      - RABBITMQ_DEFAULT_PASS=1q2w3e4r
+      - RABBITMQ_DEFAULT_VHOST=mail    
+    ports:
+      - "5672:5672"
+    networks:
+      - bakery 
+
   member-api:
     container_name: 'member-api'
     restart: always
