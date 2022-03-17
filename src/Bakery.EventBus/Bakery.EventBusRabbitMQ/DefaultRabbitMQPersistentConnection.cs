@@ -26,7 +26,8 @@ public class DefaultRabbitMQPersistentConnection : IRabbitMQPersistentConnection
             HostName = configuration["EventBusConnection"],
             DispatchConsumersAsync = true,
             UserName = configuration["EventBusUserName"],
-            Password = configuration["EventBusPassword"]
+            Password = configuration["EventBusPassword"],
+            VirtualHost = configuration["EventBusVirtualHost"]
         };
         _logger = logger;
         _retryCount = int.Parse(configuration["EventBusRetryCount"]);

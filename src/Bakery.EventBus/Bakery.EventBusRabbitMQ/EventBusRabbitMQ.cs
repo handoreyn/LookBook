@@ -13,11 +13,11 @@ using RabbitMQ.Client.Exceptions;
 
 namespace Bakery.EventBusRabbitMQ;
 
-public class EventBusRabbitMQ : IEventBus, IDisposable
+public class EventBusRabbitMq : IEventBus, IDisposable
 {
-    private const string BROKER_NAME = "bakery_event_bus";
+    private const string BrokerName = "bakery_event_bus";
     private readonly IRabbitMQPersistentConnection _persistentConnection;
-    private readonly ILogger<EventBusRabbitMQ> _logger;
+    private readonly ILogger<EventBusRabbitMq> _logger;
     private readonly IEventBusSubscriptionManager _subscriptionManager;
     private readonly int _retryCount;
     private readonly IServiceProvider _serviceProvider;
@@ -25,14 +25,14 @@ public class EventBusRabbitMQ : IEventBus, IDisposable
     private IModel _consumerChannel;
     private string _queueName;
 
-    public EventBusRabbitMQ(IRabbitMQPersistentConnection persistentConnection, ILogger<EventBusRabbitMQ> logger, IEventBusSubscriptionManager subscriptionManager, IServiceProvider serviceProvider, IConfiguration configuration)
+    public EventBusRabbitMq(IRabbitMQPersistentConnection persistentConnection, ILogger<EventBusRabbitMq> logger, IEventBusSubscriptionManager subscriptionManager, IServiceProvider serviceProvider, IConfiguration configuration)
     {
         _persistentConnection = persistentConnection?? throw new ArgumentNullException(nameof(persistentConnection));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _serviceProvider = serviceProvider;
         _subscriptionManager = subscriptionManager ?? new InMemoryEventBusSubscriptionEventManager();
         _retryCount = int.Parse(configuration["EventBusRetryCount"]);
-        _queueName = null;
+        _queueName = configuration["SubscriptionClientName"];
         _consumerChannel = CreateConsumerChannel();
         _subscriptionManager.OnEventRemoved+=SubscriptionManagerOnOnEventRemoved;
     }
@@ -42,7 +42,7 @@ public class EventBusRabbitMQ : IEventBus, IDisposable
         if (!_persistentConnection.IsConnected) _persistentConnection.TryConnect();
 
         using var channel = _persistentConnection.CreateModel();
-        channel.QueueUnbind(_queueName,BROKER_NAME,e);
+        channel.QueueUnbind(queue: _queueName, exchange: BrokerName, routingKey: e);
 
         if (!_subscriptionManager.IsEmpty) return;
         
@@ -70,7 +70,7 @@ public class EventBusRabbitMQ : IEventBus, IDisposable
 
         _logger.LogTrace("Declaring RabbitMQ exchange to publish event: {EventId}", @event.Id);
 
-        channel.ExchangeDeclare(BROKER_NAME, "direct");
+        channel.ExchangeDeclare(exchange: BrokerName, type: "direct");
 
         var message = JsonSerializer.Serialize(@event);
         var body = Encoding.UTF8.GetBytes(message);
@@ -82,7 +82,8 @@ public class EventBusRabbitMQ : IEventBus, IDisposable
 
             _logger.LogTrace("Publishing event to RabbitMQ: {EventId}", @event.Id);
 
-            channel.BasicPublish(BROKER_NAME, eventName, true, properties, body);
+            channel.BasicPublish(exchange: BrokerName, routingKey: eventName, mandatory: true,
+                basicProperties: properties, body: body);
         });
 
     }
@@ -106,7 +107,7 @@ public class EventBusRabbitMQ : IEventBus, IDisposable
         if (!_persistentConnection.IsConnected) _persistentConnection.TryConnect();
 
         using var channel = _persistentConnection.CreateModel();
-        channel.QueueBind(_queueName, BROKER_NAME, eventName);
+        channel.QueueBind(queue: _queueName, exchange: BrokerName, routingKey: eventName);
     }
 
     public void SubscribeDynamic<TH>(string eventName) where TH : IDynamicIntegrationEventHandler
@@ -146,7 +147,7 @@ public class EventBusRabbitMQ : IEventBus, IDisposable
 
         var consumer = new AsyncEventingBasicConsumer(_consumerChannel);
         consumer.Received+=ConsumerOnReceived;
-        _consumerChannel.BasicConsume(_queueName, false, consumer);
+        _consumerChannel.BasicConsume(queue: _queueName, autoAck: false, consumer: consumer);
     }
 
     private async Task ConsumerOnReceived(object sender, BasicDeliverEventArgs @event)
@@ -175,15 +176,14 @@ public class EventBusRabbitMQ : IEventBus, IDisposable
         
         _logger.LogTrace("Creating RabbitMQ consumer channel");
         var channel = _persistentConnection.CreateModel();
-        channel.ExchangeDeclare(BROKER_NAME, "direct");
+        channel.ExchangeDeclare(exchange:BrokerName,type: "direct");
 
-        channel.QueueDeclare(_queueName, true, false, false, null);
+        channel.QueueDeclare(queue: _queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
         channel.CallbackException += (sender, ea) =>
         {
             _logger.LogWarning(ea.Exception, "Recreating RabbitMQ consumer channel...");
             _consumerChannel = CreateConsumerChannel();
             StartBasicConsume();
-            ;
         };
 
         return channel;

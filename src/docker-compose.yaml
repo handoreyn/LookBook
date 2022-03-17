@@ -5,7 +5,7 @@ networks:
 
 services:
   rabbitmq:
-    image: rabbitmq:3-management-
+    image: rabbitmq:3-management
     container_name: rabbitmq
     restart: always
     environment:
@@ -14,6 +14,7 @@ services:
       - RABBITMQ_DEFAULT_VHOST=mail    
     ports:
       - "5672:5672"
+      - "15672:15672"
     networks:
       - bakery 
 
@@ -27,6 +28,17 @@ services:
     build:
       context: .
       dockerfile: Bakery.Services/Bakery.Member/Bakery.Member.Api/Dockerfile
+
+  email-api:
+    container_name: 'email-api'
+    restart: always
+    networks:
+      - bakery
+    ports:
+      - 7800:80
+    build:
+      context: .
+      dockerfile: Bakery.Services/Bakery.Email/Bakery.Email.Api/Dockerfile
 
   bakery-mongo:
     container_name: "bakery-mongo"

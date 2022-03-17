@@ -10,6 +10,6 @@ public static class EventBusExtension
         serviceCollection
             .AddSingleton<IEventBusSubscriptionManager,InMemoryEventBusSubscriptionEventManager>()
             .AddSingleton<IRabbitMQPersistentConnection, DefaultRabbitMQPersistentConnection>()
-            .AddSingleton<IEventBus, EventBusRabbitMQ.EventBusRabbitMQ>();
+            .AddSingleton<IEventBus, EventBusRabbitMQ.EventBusRabbitMq>();
     }
 }
