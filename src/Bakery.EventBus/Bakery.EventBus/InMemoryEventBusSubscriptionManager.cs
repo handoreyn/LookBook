@@ -1,3 +1,6 @@
+using Bakery.EventBus.Abstractions;
+using Bakery.EventBus.Events;
+
 namespace Bakery.EventBus;
 
 public class InMemoryEventBusSubscriptionEventManager:IEventBusSubscriptionManager

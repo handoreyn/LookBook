@@ -1,3 +1,5 @@
+using Bakery.EventBus.Events;
+
 namespace Bakery.Email.Core.Events;
 
 public class MemberSignedInIntegrationEvent : IntegrationEvent

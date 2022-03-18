@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
 
+namespace Bakery.EventBus.Events;
+
 public class IntegrationEvent
 {
     public IntegrationEvent()
@@ -19,4 +21,4 @@ public class IntegrationEvent
     public Guid Id { get; private init; }
     [JsonInclude]
     public DateTime CreationDate { get; private init; }
-} 
+}

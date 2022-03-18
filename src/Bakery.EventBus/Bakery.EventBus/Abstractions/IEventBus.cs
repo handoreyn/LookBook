@@ -1,3 +1,7 @@
+using Bakery.EventBus.Events;
+
+namespace Bakery.EventBus.Abstractions;
+
 public interface IEventBus
 {
     void Publish(IntegrationEvent @event);

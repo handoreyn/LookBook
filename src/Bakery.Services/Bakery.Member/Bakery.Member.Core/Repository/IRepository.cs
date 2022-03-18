@@ -1,5 +1,7 @@
 using MongoDB.Driver;
 
+namespace Bakery.Member.Core.Repository;
+
 public interface IRepository<TEntity> where TEntity : class
 {
     TEntity Find();

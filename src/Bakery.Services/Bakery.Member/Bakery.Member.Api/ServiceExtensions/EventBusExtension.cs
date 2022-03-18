@@ -1,4 +1,5 @@
 using Bakery.EventBus;
+using Bakery.EventBus.Abstractions;
 using Bakery.EventBusRabbitMQ;
 
 namespace Bakery.Member.Api.ServiceExtensions;
@@ -10,6 +11,6 @@ public static class EventBusExtension
         serviceCollection
             .AddSingleton<IRabbitMQPersistentConnection, DefaultRabbitMQPersistentConnection>()
             .AddSingleton<IEventBusSubscriptionManager,InMemoryEventBusSubscriptionEventManager>()
-            .AddSingleton<IEventBus, EventBusRabbitMQ.EventBusRabbitMq>();
+            .AddSingleton<IEventBus, EventBusRabbitMQ.EventBusRabbitMQ>();
     }
 }

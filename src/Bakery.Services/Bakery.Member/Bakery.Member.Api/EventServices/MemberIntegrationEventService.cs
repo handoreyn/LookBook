@@ -1,3 +1,6 @@
+using Bakery.EventBus.Abstractions;
+using Bakery.EventBus.Events;
+
 namespace Bakery.Member.Api.EventServices;
 
 public class MemberIntegrationEventService : IMemberIntegrationEventService, IDisposable

@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+namespace Bakery.Member.Core.Dtos.Member;
+
 public class MemberRegisterCreateDto : DtoBase
 {
     [Required]

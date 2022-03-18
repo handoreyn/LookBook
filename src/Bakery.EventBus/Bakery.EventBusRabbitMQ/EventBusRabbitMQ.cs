@@ -2,6 +2,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using Bakery.EventBus;
+using Bakery.EventBus.Abstractions;
+using Bakery.EventBus.Events;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -13,11 +15,11 @@ using RabbitMQ.Client.Exceptions;
 
 namespace Bakery.EventBusRabbitMQ;
 
-public class EventBusRabbitMq : IEventBus, IDisposable
+public class EventBusRabbitMQ : IEventBus, IDisposable
 {
     private const string BrokerName = "bakery_event_bus";
     private readonly IRabbitMQPersistentConnection _persistentConnection;
-    private readonly ILogger<EventBusRabbitMq> _logger;
+    private readonly ILogger<EventBusRabbitMQ> _logger;
     private readonly IEventBusSubscriptionManager _subscriptionManager;
     private readonly int _retryCount;
     private readonly IServiceProvider _serviceProvider;
@@ -25,7 +27,7 @@ public class EventBusRabbitMq : IEventBus, IDisposable
     private IModel _consumerChannel;
     private string _queueName;
 
-    public EventBusRabbitMq(IRabbitMQPersistentConnection persistentConnection, ILogger<EventBusRabbitMq> logger, IEventBusSubscriptionManager subscriptionManager, IServiceProvider serviceProvider, IConfiguration configuration)
+    public EventBusRabbitMQ(IRabbitMQPersistentConnection persistentConnection, ILogger<EventBusRabbitMQ> logger, IEventBusSubscriptionManager subscriptionManager, IServiceProvider serviceProvider, IConfiguration configuration)
     {
         _persistentConnection = persistentConnection?? throw new ArgumentNullException(nameof(persistentConnection));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -71,9 +73,7 @@ public class EventBusRabbitMq : IEventBus, IDisposable
         _logger.LogTrace("Declaring RabbitMQ exchange to publish event: {EventId}", @event.Id);
 
         channel.ExchangeDeclare(exchange: BrokerName, type: "direct");
-
-        var message = JsonSerializer.Serialize(@event);
-        var body = Encoding.UTF8.GetBytes(message);
+        var body = JsonSerializer.SerializeToUtf8Bytes(@event,@event.GetType());
 
         policy.Execute(() =>
         {

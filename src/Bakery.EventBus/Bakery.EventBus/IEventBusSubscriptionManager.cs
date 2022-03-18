@@ -1,3 +1,8 @@
+using Bakery.EventBus.Abstractions;
+using Bakery.EventBus.Events;
+
+namespace Bakery.EventBus;
+
 public interface IEventBusSubscriptionManager
 {
     bool IsEmpty { get; }

@@ -1,3 +1,5 @@
+namespace Bakery.Member.Core.Dtos.Member;
+
 public class MemberProfileDto : DtoBase
 {
     public string MemberId { get; set; }

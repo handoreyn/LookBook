@@ -1,3 +1,5 @@
+namespace Bakery.Member.Core.Exceptions;
+
 public class MemberNotFoundException : Exception
 {
     public MemberNotFoundException() : base()

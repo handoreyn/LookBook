@@ -1,4 +1,7 @@
 using Bakery.Member.Core.Dtos.Member;
+using Bakery.Member.Core.Entities;
+
+namespace Bakery.Member.Core.Repository;
 
 public interface IMemberRepository : IRepository<MemberEntity>
 {

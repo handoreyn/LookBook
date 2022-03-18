@@ -1,6 +1,7 @@
 using Bakery.Email.Api.ServiceExtensions;
 using Bakery.Email.Core.EventHandlers;
 using Bakery.Email.Core.Events;
+using Bakery.EventBus.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEventBus();

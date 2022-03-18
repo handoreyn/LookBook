@@ -1,4 +1,5 @@
 using Bakery.Email.Core.Events;
+using Bakery.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 
 namespace Bakery.Email.Core.EventHandlers;

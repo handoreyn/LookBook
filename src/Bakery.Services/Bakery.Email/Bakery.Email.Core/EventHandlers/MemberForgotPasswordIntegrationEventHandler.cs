@@ -1,11 +1,12 @@
 using Bakery.Email.Core.Events;
+using Bakery.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 
 namespace Bakery.Email.Core.EventHandlers;
 
 public class MemberForgotPasswordIntegrationEventHandler : IIntegrationEventHandler<MemberForgotPasswordIntegrationEvent>
 {
-    private ILogger<MemberForgotPasswordIntegrationEventHandler> _logger;
+    private readonly ILogger<MemberForgotPasswordIntegrationEventHandler> _logger;
 
     public MemberForgotPasswordIntegrationEventHandler(ILogger<MemberForgotPasswordIntegrationEventHandler> logger)
     {

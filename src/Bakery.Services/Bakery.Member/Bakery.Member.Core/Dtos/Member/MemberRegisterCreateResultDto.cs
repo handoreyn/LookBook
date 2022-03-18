@@ -1,3 +1,5 @@
+namespace Bakery.Member.Core.Dtos.Member;
+
 public class MemberRegisterCreateResultDto:DtoBase
 {
     public string Id { get; set; }

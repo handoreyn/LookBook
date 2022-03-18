@@ -1,6 +1,8 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
+namespace Bakery.Member.Core.Entities;
+
 public class MemberEntity : BaseEntity
 {
     [BsonId]

@@ -1,3 +1,5 @@
+using Bakery.EventBus.Events;
+
 namespace Bakery.Member.Core.Events;
 
 public class MemberForgotPasswordIntegrationEvent : IntegrationEvent

@@ -1,7 +1,10 @@
 using Bakery.Member.Api.EventServices;
 using Bakery.Member.Core.Dtos.Member;
 using Bakery.Member.Core.Events;
+using Bakery.Member.Core.Repository;
 using Microsoft.AspNetCore.Mvc;
+
+namespace Bakery.Member.Api.Controllers;
 
 [ApiController]
 [Route("v1/api/member")]

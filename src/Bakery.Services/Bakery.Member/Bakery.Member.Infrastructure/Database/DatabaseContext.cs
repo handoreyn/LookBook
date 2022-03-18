@@ -1,6 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
+namespace Bakery.Member.Infrastructure.Database;
+
 public abstract class DatabaseContext<TEntity> where TEntity : class
 {
     protected readonly IMongoCollection<TEntity> Collection;

@@ -1,5 +1,9 @@
+using Bakery.Member.Core.Repository;
+using Bakery.Member.Infrastructure.Database;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+
+namespace Bakery.Member.Infrastructure.Repository;
 
 public abstract class RepositoryBase<TEntity> : DatabaseContext<TEntity>, IRepository<TEntity> where TEntity : class
 {
