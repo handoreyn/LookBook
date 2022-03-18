@@ -6,7 +6,7 @@ networks:
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
+    container_name: 'rabbitmq'
     restart: always
     environment:
       - RABBITMQ_DEFAULT_USER=mail    
@@ -24,7 +24,7 @@ services:
     networks:
       - bakery
     ports:
-      - 7700:80
+      - "7700:80"
     build:
       context: .
       dockerfile: Bakery.Services/Bakery.Member/Bakery.Member.Api/Dockerfile
@@ -35,7 +35,7 @@ services:
     networks:
       - bakery
     ports:
-      - 7800:80
+      - "7800:80"
     build:
       context: .
       dockerfile: Bakery.Services/Bakery.Email/Bakery.Email.Api/Dockerfile
