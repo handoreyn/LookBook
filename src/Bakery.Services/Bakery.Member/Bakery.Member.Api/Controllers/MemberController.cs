@@ -76,6 +76,13 @@ public class MemberController : ControllerBase
     }
 
     [HttpPut]
+    [Route("update/{id}")]
+    public async Task<IActionResult> Update(string id, MemberUpdateDto model)
+    {
+        return Ok();
+    }
+
+    [HttpPut]
     [Route("subscribe/{memberId}")]
     public async Task<IActionResult> Subscribe(string memberId)
     {
