@@ -74,4 +74,12 @@ public class MemberController : ControllerBase
         var memberProfile = await _memberRepository.GetMemberProfileDto(id);
         return Ok(new ResponseModel<MemberProfileDto>(string.Empty, memberProfile));
     }
+
+    [HttpPut]
+    [Route("subscribe/{memberId}")]
+    public async Task<IActionResult> Subscribe(string memberId)
+    {
+        await _memberRepository.Subscribe(memberId);
+        return Ok();
+    }
 }
