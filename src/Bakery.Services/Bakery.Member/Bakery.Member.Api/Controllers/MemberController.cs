@@ -79,6 +79,13 @@ public class MemberController : ControllerBase
     [Route("update/{id}")]
     public async Task<IActionResult> Update(string id, MemberUpdateDto model)
     {
+        if (string.IsNullOrEmpty(id) || !ModelState.IsValid)
+            return BadRequest(new ResponseModel<MemberUpdateDto>("Invalid parameters"));
+
+        if (await _memberRepository.IsMemberExistById(id))
+            return NotFound(new ResponseModel<DtoBase>("Member does not exist!"));
+
+        await _memberRepository.UpdateMemberAsync(id, model);
         return Ok();
     }
 

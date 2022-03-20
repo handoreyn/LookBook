@@ -85,6 +85,12 @@ public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
         return result > 0;
     }
 
+    public async Task<bool> IsMemberExistById(string memberId)
+    {
+        var query = Filter.Eq(m => m.Id, ObjectId.Parse(memberId));
+        return await Collection.CountDocumentsAsync(query) > 0;
+    }
+
     public async Task<MemberRegisterCreateResultDto> Register(MemberRegisterCreateDto model)
     {
         var member = new MemberEntity
@@ -126,5 +132,27 @@ public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
         .Set(l => l.SubscriptionStatus, SubscriptionStatusType.premium);
 
         await UpdateAsync(query, updateQuery);
+    }
+
+    public Task UpdateMemberAsync(string memberId, MemberUpdateDto model)
+    {
+        var query = Filter.Eq(m => m.Id, ObjectId.Parse(memberId));
+        var update = Builders<MemberEntity>.Update;
+        
+        var updateQuery = update.Combine();
+
+        if (model.BirthDate != null)
+            updateQuery = update.Combine(updateQuery, update.Set(m => m.BirthDate, model.BirthDate));
+
+        if (model.Gender != null)
+            updateQuery = update.Combine(updateQuery, update.Set(m => m.Gender, model.Gender));
+        
+        if (!string.IsNullOrEmpty(model.Username))
+            updateQuery = update.Combine(updateQuery, update.Set(m => m.Country, model.Username));
+
+        if (!string.IsNullOrEmpty(model.Country))
+            updateQuery = update.Combine(updateQuery, update.Set(m => m.Country, model.Country));
+        
+        return UpdateAsync(query, updateQuery);
     }
 }
