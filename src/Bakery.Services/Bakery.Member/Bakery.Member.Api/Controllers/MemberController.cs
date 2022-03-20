@@ -19,6 +19,7 @@ public class MemberController : ControllerBase
         _eventBus = eventBus;
     }
 
+    // POST
     [HttpPost]
     [Route("register")]
     public async Task<IActionResult> Register(MemberRegisterCreateDto model)
@@ -35,7 +36,9 @@ public class MemberController : ControllerBase
         return CreatedAtAction(nameof(MemberProfile), new { id = member.Id }, member);
     }
 
+    // GET
     [HttpPost]
+    [Route("sign-in")]
     public async Task<IActionResult> SignIn(MemberSignInDto model)
     {
         if (!ModelState.IsValid) return BadRequest(new ResponseModel<MemberSignInDto>("Missing parameters", model));
@@ -47,9 +50,10 @@ public class MemberController : ControllerBase
         // TODO return JWT
         return Ok();
     }
-    
+
     [HttpGet]
-    public async Task<IActionResult> ForgotPassword([FromQuery]string username)
+    [Route("forgot-password/{username}")]
+    public async Task<IActionResult> ForgotPassword(string username)
     {
         if (string.IsNullOrEmpty(username))
             return BadRequest(new ResponseModel<DtoBase>("Email is required!", new MemberProfileDto()));
