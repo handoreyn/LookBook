@@ -37,6 +37,8 @@ public class MemberEntity : BaseEntity
     [BsonRepresentation(BsonType.DateTime)]
 
     public DateTime BirthDate { get; set; }
+    
+    [BsonElement("gender")]
     [BsonRepresentation(BsonType.String)]
     [BsonDefaultValue(GenderType.male)]
     public GenderType Gender { get; set; }
