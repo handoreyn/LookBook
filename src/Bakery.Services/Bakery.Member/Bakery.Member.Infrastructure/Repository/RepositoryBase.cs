@@ -8,7 +8,7 @@ namespace Bakery.Member.Infrastructure.Repository;
 public abstract class RepositoryBase<TEntity> : DatabaseContext<TEntity>, IRepository<TEntity> where TEntity : class
 {
     protected readonly FilterDefinitionBuilder<TEntity> Filter = Builders<TEntity>.Filter;
-    protected RepositoryBase(IConfiguration configuration) : base(configuration)
+    protected RepositoryBase(IConfiguration configuration, string collectionName) : base(configuration, collectionName)
     {
     }
 
@@ -49,16 +49,16 @@ public abstract class RepositoryBase<TEntity> : DatabaseContext<TEntity>, IRepos
         return T;
     }
 
-    public void Update(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options) =>
+    public void Update(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions? options = null) =>
         Collection.UpdateOne(filter, update, options);
 
     public Task UpdateAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update,
-        UpdateOptions options) => Collection.UpdateOneAsync(filter, update, options);
+        UpdateOptions? options = null) => Collection.UpdateOneAsync(filter, update, options);
 
-    public void UpdateMany(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options)=>
+    public void UpdateMany(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions? options = null) =>
         Collection.UpdateMany(filter, update, options);
 
-    public Task UpdateManyAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options)=>
+    public Task UpdateManyAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions? options = null) =>
         Collection.UpdateManyAsync(filter, update, options);
 
     public void Delete(FilterDefinition<TEntity> filter) =>
@@ -67,6 +67,6 @@ public abstract class RepositoryBase<TEntity> : DatabaseContext<TEntity>, IRepos
     public Task DeleteAsync(FilterDefinition<TEntity> filter) => Collection.DeleteOneAsync(filter);
 
     public void DeleteMany(FilterDefinition<TEntity> filter) => Collection.DeleteMany(filter);
-    
+
     public Task DeleteManyAsync(FilterDefinition<TEntity> filter) => Collection.DeleteManyAsync(filter);
 }

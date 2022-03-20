@@ -7,7 +7,7 @@ public abstract class DatabaseContext<TEntity> where TEntity : class
 {
     protected readonly IMongoCollection<TEntity> Collection;
 
-    protected DatabaseContext(IConfiguration configuration)
+    protected DatabaseContext(IConfiguration configuration, string collectionName)
     {
         var clientSettings = new MongoClientSettings
         {
@@ -19,6 +19,6 @@ public abstract class DatabaseContext<TEntity> where TEntity : class
 
         var client = new MongoClient(clientSettings);
         var database = client.GetDatabase(configuration["MongoDbName"]);
-        Collection = database.GetCollection<TEntity>(nameof(TEntity).ToLower());
+        Collection = database.GetCollection<TEntity>(collectionName);
     }
 }

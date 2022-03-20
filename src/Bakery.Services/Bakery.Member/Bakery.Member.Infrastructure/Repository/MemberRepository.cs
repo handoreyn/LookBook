@@ -4,12 +4,13 @@ using Bakery.Member.Core.Exceptions;
 using Bakery.Member.Core.Repository;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Bakery.Member.Infrastructure.Repository;
 
 public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
 {
-    public MemberRepository(IConfiguration configuration) : base(configuration)
+    public MemberRepository(IConfiguration configuration) : base(configuration, "member")
     {
     }
 
@@ -61,9 +62,9 @@ public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
     {
         var query = Filter.Eq(l => l.Username, username);
         var member = await FindAsync(query);
-        
+
         if (member == null) throw new MemberNotFoundException("Member not found by specified username.");
-        
+
         return new MemberProfileDto
         {
             MemberId = member.Id.ToString(),
@@ -76,7 +77,7 @@ public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
             Country = member.Country
         };
     }
-    
+
     public async Task<bool> IsMemberExist(string username)
     {
         var query = Filter.Eq(m => m.Username, username);
@@ -110,5 +111,20 @@ public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
             Email = member.ContactInformation.FirstOrDefault(l => l.ContactType == ContactEnumType.email && l.IsPrimary)?.Address,
             Username = member.Username
         };
+    }
+
+    public async Task Subscribe(string memberId)
+    {
+        var query = Filter.Eq(m => m.Id, ObjectId.Parse(memberId));
+        var member = await FindAsync(query);
+
+        if (member == null) throw new Exception("Member does not exist");
+
+        var update = Builders<MemberEntity>.Update;
+        var updateQuery = update.AddToSet(l => l.SubscriptionStatusActivity,
+            new SubscriptionStatusActivity(SubscriptionStatusType.premium))
+        .Set(l => l.SubscriptionStatus, SubscriptionStatusType.premium);
+
+        await UpdateAsync(query, updateQuery);
     }
 }

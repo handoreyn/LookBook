@@ -10,4 +10,5 @@ public interface IMemberRepository : IRepository<MemberEntity>
     Task<MemberProfileDto> GetMemberProfileDto(string memberId);
     Task<MemberProfileDto> FindMember(MemberSignInDto model);
     Task<MemberProfileDto> FindMember(string username);
+    Task Subscribe(string memberId);
 }
