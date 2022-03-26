@@ -17,4 +17,8 @@ public class EmailTemplate
     public string Content { get; set; }
     [BsonElement("parameters")]
     public List<string> Parameters { get; set; } = new();
+    [BsonElement("status")]
+    [BsonRepresentation(BsonType.String)]
+    [BsonDefaultValue(StatusEnumType.passive)]
+    public StatusEnumType Status { get; set; }
 }
