@@ -82,8 +82,8 @@ public class MemberController : ControllerBase
         if (string.IsNullOrEmpty(id) || !ModelState.IsValid)
             return BadRequest(new ResponseModel<MemberUpdateDto>("Invalid parameters"));
 
-        if (await _memberRepository.IsMemberExistById(id))
-            return NotFound(new ResponseModel<DtoBase>("Member does not exist!"));
+        var isMemberExist = await _memberRepository.IsMemberExistById(id);
+        if(!isMemberExist) return NotFound(new ResponseModel<DtoBase>("Member does not exist!"));
 
         await _memberRepository.UpdateMemberAsync(id, model);
         return Ok();

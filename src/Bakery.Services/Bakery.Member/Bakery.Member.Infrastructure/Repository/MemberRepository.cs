@@ -146,9 +146,9 @@ public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
 
         if (model.Gender != null)
             updateQuery = update.Combine(updateQuery, update.Set(m => m.Gender, model.Gender));
-        
+
         if (!string.IsNullOrEmpty(model.Username))
-            updateQuery = update.Combine(updateQuery, update.Set(m => m.Country, model.Username));
+            updateQuery = update.Combine(updateQuery, update.Set(m => m.Username, model.Username));
 
         if (!string.IsNullOrEmpty(model.Country))
             updateQuery = update.Combine(updateQuery, update.Set(m => m.Country, model.Country));
