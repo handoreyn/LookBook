@@ -2,7 +2,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Bakery.EventBus\Bakery.EventBus\Bakery.EventBus.csproj" />
-    <ProjectReference Include="..\..\..\Bakery.SharedKernel\Bakery.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\Bakery.SharedKernel\Bakery.MongoDBRepository\Bakery.MongoDBRepository.csproj" />
+    <ProjectReference Include="..\..\..\Bakery.SharedKernel\Bakery.SharedKernel\Bakery.SharedKernel.csproj" />
   </ItemGroup>
 
   <ItemGroup>

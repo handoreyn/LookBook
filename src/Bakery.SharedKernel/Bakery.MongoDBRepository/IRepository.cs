@@ -1,6 +1,6 @@
 using MongoDB.Driver;
 
-namespace Bakery.Member.Core.Repository;
+namespace Bakery.MongoDBRepository;
 
 public interface IRepository<TEntity> where TEntity : class
 {
@@ -8,10 +8,10 @@ public interface IRepository<TEntity> where TEntity : class
     Task<TEntity> FindAsync();
     TEntity Find(FilterDefinition<TEntity> filter);
     Task<TEntity> FindAsync(FilterDefinition<TEntity> filter);
-    public IEnumerable<TEntity> FindMany(FilterDefinition<TEntity> filter, int limit = 10, int page = 0);
-    public Task<List<TEntity>> FindManyAsync(FilterDefinition<TEntity> filter, int limit = 10, int page = 0);
-    public List<TEntity> FindMany(FilterDefinition<TEntity> filter, SortDefinition<TEntity> sort, int limit = 10, int page = 0);
-    public Task<List<TEntity>> FindManyAsync(FilterDefinition<TEntity> filter, SortDefinition<TEntity> sort, int limit = 10, int page = 0);
+    IEnumerable<TEntity> FindMany(FilterDefinition<TEntity> filter, int limit = 10, int page = 0);
+    Task<List<TEntity>> FindManyAsync(FilterDefinition<TEntity> filter, int limit = 10, int page = 0);
+    List<TEntity> FindMany(FilterDefinition<TEntity> filter, SortDefinition<TEntity> sort, int limit = 10, int page = 0);
+    Task<List<TEntity>> FindManyAsync(FilterDefinition<TEntity> filter, SortDefinition<TEntity> sort, int limit = 10, int page = 0);
 
     TEntity Create(TEntity T);
     Task<TEntity> CreateAsync(TEntity T);

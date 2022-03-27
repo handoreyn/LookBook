@@ -1,14 +1,12 @@
-using Bakery.Member.Core.Repository;
-using Bakery.Member.Infrastructure.Database;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
-namespace Bakery.Member.Infrastructure.Repository;
+namespace Bakery.MongoDBRepository;
 
-public abstract class RepositoryBase<TEntity> : DatabaseContext<TEntity>, IRepository<TEntity> where TEntity : class
+public abstract class Repository<TEntity> : DatabaseContext<TEntity>, IRepository<TEntity> where TEntity : class
 {
     protected readonly FilterDefinitionBuilder<TEntity> Filter = Builders<TEntity>.Filter;
-    protected RepositoryBase(IConfiguration configuration, string collectionName) : base(configuration, collectionName)
+    protected Repository(IConfiguration configuration, string collectionName) : base(configuration, collectionName)
     {
     }
 

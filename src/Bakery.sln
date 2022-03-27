@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.SharedKernel", "Bakery.SharedKernel\Bakery.SharedKernel.csproj", "{0FA04C84-12B4-4676-BDE6-844002776ED0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bakery.Services", "Bakery.Services", "{E014F18A-B475-4387-A508-7C2A69F4FAF5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bakery.Member", "Bakery.Member", "{013311D9-EA08-4E50-A3DD-C2019622BB87}"
@@ -29,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Email.Core", "Bakery
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Email.Infrastructure", "Bakery.Services\Bakery.Email\Bakery.Email.Infrastructure\Bakery.Email.Infrastructure.csproj", "{40455E3F-351E-41FB-B6FA-2B6A6681AA8F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bakery.SharedKernel", "Bakery.SharedKernel", "{17EADEB1-D8A1-4F42-8AB2-5662FE548C70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.MongoDBRepository", "Bakery.SharedKernel\Bakery.MongoDBRepository\Bakery.MongoDBRepository.csproj", "{C5A96EB5-782B-4CDB-BCD9-F1A72FF51968}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,10 +40,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0FA04C84-12B4-4676-BDE6-844002776ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FA04C84-12B4-4676-BDE6-844002776ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FA04C84-12B4-4676-BDE6-844002776ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FA04C84-12B4-4676-BDE6-844002776ED0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8AE73BE6-FD07-4512-92F4-3E7DA40FF1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8AE73BE6-FD07-4512-92F4-3E7DA40FF1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AE73BE6-FD07-4512-92F4-3E7DA40FF1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -74,6 +72,10 @@ Global
 		{40455E3F-351E-41FB-B6FA-2B6A6681AA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40455E3F-351E-41FB-B6FA-2B6A6681AA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40455E3F-351E-41FB-B6FA-2B6A6681AA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5A96EB5-782B-4CDB-BCD9-F1A72FF51968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5A96EB5-782B-4CDB-BCD9-F1A72FF51968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5A96EB5-782B-4CDB-BCD9-F1A72FF51968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5A96EB5-782B-4CDB-BCD9-F1A72FF51968}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{013311D9-EA08-4E50-A3DD-C2019622BB87} = {E014F18A-B475-4387-A508-7C2A69F4FAF5}
@@ -86,5 +88,6 @@ Global
 		{0C2A69DF-B5AB-45AF-A68A-729E5D0782FF} = {C4D93D33-01D4-490A-951B-CF17765E34C9}
 		{9835D7AB-CD65-40A1-B000-2DB24AA863DE} = {C4D93D33-01D4-490A-951B-CF17765E34C9}
 		{40455E3F-351E-41FB-B6FA-2B6A6681AA8F} = {C4D93D33-01D4-490A-951B-CF17765E34C9}
+		{C5A96EB5-782B-4CDB-BCD9-F1A72FF51968} = {17EADEB1-D8A1-4F42-8AB2-5662FE548C70}
 	EndGlobalSection
 EndGlobal

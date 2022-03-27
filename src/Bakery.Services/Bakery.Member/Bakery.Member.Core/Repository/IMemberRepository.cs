@@ -1,5 +1,6 @@
 using Bakery.Member.Core.Dtos.Member;
 using Bakery.Member.Core.Entities;
+using Bakery.MongoDBRepository;
 
 namespace Bakery.Member.Core.Repository;
 

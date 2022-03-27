@@ -2,13 +2,14 @@ using Bakery.Member.Core.Dtos.Member;
 using Bakery.Member.Core.Entities;
 using Bakery.Member.Core.Exceptions;
 using Bakery.Member.Core.Repository;
+using Bakery.MongoDBRepository;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Bakery.Member.Infrastructure.Repository;
 
-public class MemberRepository : RepositoryBase<MemberEntity>, IMemberRepository
+public class MemberRepository : Repository<MemberEntity>, IMemberRepository
 {
     public MemberRepository(IConfiguration configuration) : base(configuration, "member")
     {
