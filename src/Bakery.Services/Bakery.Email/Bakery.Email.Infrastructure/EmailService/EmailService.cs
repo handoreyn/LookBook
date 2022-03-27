@@ -3,7 +3,6 @@ using System.Text;
 using System.Text.Json;
 using Bakery.Email.Core.Dtos.EmailService;
 using Bakery.Email.Core.Services;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Bakery.Email.Infrastructure.EmailService;
