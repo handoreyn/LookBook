@@ -47,16 +47,16 @@ public abstract class Repository<TEntity> : DatabaseContext<TEntity>, IRepositor
         return T;
     }
 
-    public void Update(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions? options = null) =>
+    public void Update(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options = null) =>
         Collection.UpdateOne(filter, update, options);
 
     public Task UpdateAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update,
-        UpdateOptions? options = null) => Collection.UpdateOneAsync(filter, update, options);
+        UpdateOptions options = null) => Collection.UpdateOneAsync(filter, update, options);
 
-    public void UpdateMany(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions? options = null) =>
+    public void UpdateMany(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options = null) =>
         Collection.UpdateMany(filter, update, options);
 
-    public Task UpdateManyAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions? options = null) =>
+    public Task UpdateManyAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options = null) =>
         Collection.UpdateManyAsync(filter, update, options);
 
     public void Delete(FilterDefinition<TEntity> filter) =>

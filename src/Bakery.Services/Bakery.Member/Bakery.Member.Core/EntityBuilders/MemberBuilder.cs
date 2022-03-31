@@ -13,7 +13,7 @@ public class MemberBuilder
 
     public MemberBuilder(MemberEntity member)
     {
-        _member = _member;
+        _member = member;
     }
 
     public MemberBuilder SetUsername(string username)
@@ -57,9 +57,9 @@ public class MemberBuilder
     public MemberBuilder SetContactInformation(ContactEnumType contactType, string address)
     {
         if (_member.ContactInformation.Any(l => l.ContactType == contactType && l.Address.Equals(address))) return this;
-        
-        _member.ContactInformation.Add(new Contact(contactType,address));
-        
+
+        _member.ContactInformation.Add(new Contact(contactType, address));
+
         return this;
     }
 
