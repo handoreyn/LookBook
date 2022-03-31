@@ -37,7 +37,7 @@ public class MemberEntity : BaseEntity
     [BsonRepresentation(BsonType.DateTime)]
 
     public DateTime BirthDate { get; set; }
-    
+
     [BsonElement("gender")]
     [BsonRepresentation(BsonType.String)]
     [BsonDefaultValue(GenderType.male)]
@@ -49,4 +49,7 @@ public class MemberEntity : BaseEntity
     [BsonElement("country")]
     [BsonDefaultValue("tr")]
     public string Country { get; set; }
+    
+    [BsonElement("member_sources")]
+    public List<MemberSource> MemberSources { get; set; } = new();
 }
