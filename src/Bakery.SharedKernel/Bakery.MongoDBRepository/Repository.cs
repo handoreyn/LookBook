@@ -67,4 +67,11 @@ public abstract class Repository<TEntity> : DatabaseContext<TEntity>, IRepositor
     public void DeleteMany(FilterDefinition<TEntity> filter) => Collection.DeleteMany(filter);
 
     public Task DeleteManyAsync(FilterDefinition<TEntity> filter) => Collection.DeleteManyAsync(filter);
+
+    public Task BulkInsert(IEnumerable<InsertOneModel<TEntity>> data)
+    {
+        return Collection.BulkWriteAsync(data);
+    }
+
+    public long Count() => Collection.CountDocuments(Filter.Empty);
 }

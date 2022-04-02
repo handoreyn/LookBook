@@ -24,4 +24,6 @@ public interface IRepository<TEntity> where TEntity : class
     Task DeleteAsync(FilterDefinition<TEntity> filter);
     void DeleteMany(FilterDefinition<TEntity> filter);
     Task DeleteManyAsync(FilterDefinition<TEntity> filter);
+    Task BulkInsert(IEnumerable<InsertOneModel<TEntity>> data);
+    long Count();
 }
