@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Bakery.Member.Api.EventServices;
+using Bakery.Member.Api.SeedData;
 using Bakery.Member.Api.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,4 +16,4 @@ var app = builder.Build();
 // app.UseExceptionHandler();
 app.UseRouting();
 app.MapDefaultControllerRoute();
-app.Run();
+app.SeedData().Run();
