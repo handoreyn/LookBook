@@ -33,6 +33,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Email.Core", "Bakery
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Email.Infrastructure", "Bakery.Services\Bakery.Email\Bakery.Email.Infrastructure\Bakery.Email.Infrastructure.csproj", "{08496F24-79CB-4E8B-B21A-D7E17CBAE9A4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bakery.Employee", "Bakery.Employee", "{C1BCECCE-99C9-4761-A078-70D4F249B098}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Employee.Api", "Bakery.Services\Bakery.Employee\Bakery.Employee.Api\Bakery.Employee.Api.csproj", "{30778718-8C65-4F20-B1E4-21BA71854323}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Employee.Core", "Bakery.Services\Bakery.Employee\Bakery.Employee.Core\Bakery.Employee.Core.csproj", "{41513450-6AF1-421A-98C3-016BA7AB6236}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Employee.Infrastructure", "Bakery.Services\Bakery.Employee\Bakery.Employee.Infrastructure\Bakery.Employee.Infrastructure.csproj", "{EB9ADA2F-6775-4595-BA91-D39590280999}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +90,18 @@ Global
 		{08496F24-79CB-4E8B-B21A-D7E17CBAE9A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08496F24-79CB-4E8B-B21A-D7E17CBAE9A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08496F24-79CB-4E8B-B21A-D7E17CBAE9A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30778718-8C65-4F20-B1E4-21BA71854323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30778718-8C65-4F20-B1E4-21BA71854323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30778718-8C65-4F20-B1E4-21BA71854323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30778718-8C65-4F20-B1E4-21BA71854323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41513450-6AF1-421A-98C3-016BA7AB6236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41513450-6AF1-421A-98C3-016BA7AB6236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41513450-6AF1-421A-98C3-016BA7AB6236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41513450-6AF1-421A-98C3-016BA7AB6236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9ADA2F-6775-4595-BA91-D39590280999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9ADA2F-6775-4595-BA91-D39590280999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9ADA2F-6775-4595-BA91-D39590280999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9ADA2F-6775-4595-BA91-D39590280999}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{71F15B63-850F-4674-A966-880D0A3ECBEB} = {E60171F2-2AEB-4CD1-A01B-82E7050F9B98}
@@ -96,5 +116,9 @@ Global
 		{C02341E9-AFA5-410E-BD63-ABE919ED868E} = {082F369A-6CA8-4980-9E76-9151C83E9448}
 		{643A30CB-8920-4B15-B25C-AC5B2D426F71} = {082F369A-6CA8-4980-9E76-9151C83E9448}
 		{08496F24-79CB-4E8B-B21A-D7E17CBAE9A4} = {082F369A-6CA8-4980-9E76-9151C83E9448}
+		{C1BCECCE-99C9-4761-A078-70D4F249B098} = {2C653A81-2578-4C9F-962C-8CE955434E3E}
+		{30778718-8C65-4F20-B1E4-21BA71854323} = {C1BCECCE-99C9-4761-A078-70D4F249B098}
+		{41513450-6AF1-421A-98C3-016BA7AB6236} = {C1BCECCE-99C9-4761-A078-70D4F249B098}
+		{EB9ADA2F-6775-4595-BA91-D39590280999} = {C1BCECCE-99C9-4761-A078-70D4F249B098}
 	EndGlobalSection
 EndGlobal

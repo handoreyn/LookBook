@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bakery.Employee.Core\Bakery.Employee.Core.csproj" />
+    <ProjectReference Include="..\Bakery.Employee.Infrastructure\Bakery.Employee.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Bakery.EventBus\Bakery.EventBusRabbitMQ\Bakery.EventBusRabbitMQ.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>
