@@ -1,3 +1,5 @@
+using Bakery.SharedKernel.Dtos;
+
 namespace Bakery.Email.Core.Dtos.ApiSubscriber;
 
 public class ApiSubscriberListDto : DtoBase

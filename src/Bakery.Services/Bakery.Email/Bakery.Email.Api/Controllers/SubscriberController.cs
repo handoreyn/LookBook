@@ -1,6 +1,7 @@
 using Bakery.Email.Core.Dtos.ApiSubscriber;
 using Bakery.Email.Core.Repository;
 using Bakery.SharedKernel.ApiResponses;
+using Bakery.SharedKernel.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bakery.Email.Api.Controllers;

@@ -1,3 +1,6 @@
+using Bakery.SharedKernel.Dtos;
+using Bakery.SharedKernel.Enums;
+
 namespace Bakery.Member.Core.Dtos.Member;
 
 public class MemberUpdateDto : DtoBase

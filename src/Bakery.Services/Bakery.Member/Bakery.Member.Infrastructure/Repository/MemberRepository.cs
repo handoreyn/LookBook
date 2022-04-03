@@ -3,6 +3,7 @@ using Bakery.Member.Core.Entities;
 using Bakery.Member.Core.Exceptions;
 using Bakery.Member.Core.Repository;
 using Bakery.MongoDBRepository;
+using Bakery.SharedKernel.Enums;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;

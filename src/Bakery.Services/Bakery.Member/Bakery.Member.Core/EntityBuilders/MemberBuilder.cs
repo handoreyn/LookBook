@@ -1,4 +1,5 @@
 using Bakery.Member.Core.Entities;
+using Bakery.SharedKernel.Enums;
 
 namespace Bakery.Member.Core.EntityBuilders;
 

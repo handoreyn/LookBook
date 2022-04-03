@@ -1,3 +1,5 @@
+using Bakery.SharedKernel.Dtos;
+
 namespace Bakery.SharedKernel.ApiResponses;
 
 public class ResponseModel<TDto> where TDto : DtoBase

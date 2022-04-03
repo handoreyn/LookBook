@@ -1,3 +1,5 @@
+namespace Bakery.SharedKernel.Enums;
+
 public enum StatusEnumType
 {
     banned = -2,

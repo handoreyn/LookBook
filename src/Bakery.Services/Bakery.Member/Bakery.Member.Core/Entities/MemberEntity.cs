@@ -1,3 +1,5 @@
+using Bakery.SharedKernel.Entities;
+using Bakery.SharedKernel.Enums;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 

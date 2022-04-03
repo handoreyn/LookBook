@@ -1,3 +1,6 @@
+using Bakery.SharedKernel.Dtos;
+using Bakery.SharedKernel.Enums;
+
 namespace Bakery.Email.Core.Dtos.EmailTemplateDtos;
 
 public class CreateEmailTemplateDto : DtoBase

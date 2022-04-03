@@ -2,6 +2,7 @@ using Bakery.Email.Core.Dtos.ApiSubscriber;
 using Bakery.Email.Core.Entities;
 using Bakery.Email.Core.Repository;
 using Bakery.MongoDBRepository;
+using Bakery.SharedKernel.Enums;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 

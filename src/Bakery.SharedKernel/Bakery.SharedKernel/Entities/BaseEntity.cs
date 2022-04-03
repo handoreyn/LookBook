@@ -1,6 +1,8 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
+namespace Bakery.SharedKernel.Entities;
+
 public abstract class BaseEntity
 {
     [BsonElement("create_date")]

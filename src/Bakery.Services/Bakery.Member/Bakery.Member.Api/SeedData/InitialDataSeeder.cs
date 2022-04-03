@@ -1,5 +1,6 @@
 using Bakery.Member.Core.Entities;
 using Bakery.Member.Core.Repository;
+using Bakery.SharedKernel.Enums;
 using Bogus;
 using MongoDB.Driver;
 

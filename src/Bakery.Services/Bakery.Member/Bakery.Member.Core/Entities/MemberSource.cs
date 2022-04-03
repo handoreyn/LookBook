@@ -1,3 +1,4 @@
+using Bakery.SharedKernel.Entities;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Bakery.Member.Core.Entities;

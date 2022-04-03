@@ -1,3 +1,5 @@
+using Bakery.SharedKernel.Dtos;
+
 namespace Bakery.Member.Core.Dtos.Member;
 
 public class MemberRegisterCreateResultDto:DtoBase
