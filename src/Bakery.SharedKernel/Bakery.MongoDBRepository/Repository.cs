@@ -6,7 +6,7 @@ namespace Bakery.MongoDBRepository;
 public abstract class Repository<TEntity> : DatabaseContext<TEntity>, IRepository<TEntity> where TEntity : class
 {
     protected readonly FilterDefinitionBuilder<TEntity> Filter = Builders<TEntity>.Filter;
-    protected Repository(IConfiguration configuration, string collectionName) : base(configuration, collectionName)
+    protected Repository(IMongoClient client, IConfiguration configuration, string collectionName) : base(client, configuration, collectionName)
     {
     }
 

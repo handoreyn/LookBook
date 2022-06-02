@@ -4,7 +4,7 @@ using Bakery.Member.Api.SeedData;
 using Bakery.Member.Api.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddRepository();
+builder.Services.AddRepository(builder.Configuration);
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;

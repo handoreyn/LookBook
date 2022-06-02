@@ -3,12 +3,13 @@ using Bakery.Email.Core.Entities;
 using Bakery.Email.Core.Repository;
 using Bakery.MongoDBRepository;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
 
 namespace Bakery.Email.Infrastructure.Repository;
 
 public class EmailTemplateRepository : Repository<EmailTemplate>, IEmailTemplateRepository
 {
-    public EmailTemplateRepository(IConfiguration configuration, string collectionName) : base(configuration, collectionName)
+    public EmailTemplateRepository(IMongoClient client, IConfiguration configuration, string collectionName) : base(client, configuration, collectionName)
     {
     }
 

@@ -12,7 +12,7 @@ namespace Bakery.Member.Infrastructure.Repository;
 
 public class MemberRepository : Repository<MemberEntity>, IMemberRepository
 {
-    public MemberRepository(IConfiguration configuration) : base(configuration, "member")
+    public MemberRepository(IMongoClient client, IConfiguration configuration) : base(client, configuration, "member")
     {
     }
 
@@ -140,7 +140,7 @@ public class MemberRepository : Repository<MemberEntity>, IMemberRepository
     {
         var query = Filter.Eq(m => m.Id, ObjectId.Parse(memberId));
         var update = Builders<MemberEntity>.Update;
-        
+
         var updateQuery = update.Combine();
 
         if (model.BirthDate != null)
@@ -154,7 +154,7 @@ public class MemberRepository : Repository<MemberEntity>, IMemberRepository
 
         if (!string.IsNullOrEmpty(model.Country))
             updateQuery = update.Combine(updateQuery, update.Set(m => m.Country, model.Country));
-        
+
         return UpdateAsync(query, updateQuery);
     }
 }

@@ -5,12 +5,13 @@ using Bakery.MongoDBRepository;
 using Bakery.SharedKernel.Enums;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Bakery.Email.Infrastructure.Repository;
 
 public class ApiSubscriberRepository : Repository<ApiSubscriber>, IApiSubscriberRepository
 {
-    public ApiSubscriberRepository(IConfiguration configuration) : base(configuration, "api_subscribers")
+    public ApiSubscriberRepository(IMongoClient client, IConfiguration configuration) : base(client, configuration, "api_subscribers")
     {
     }
 
