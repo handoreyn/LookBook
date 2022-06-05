@@ -8,39 +8,57 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bakery.Member.Api.Controllers;
 
+
+///<summary>
+/// <c>MemberController</c> class for handling member operations. 
+///</summary>
 [ApiController]
 [Route("v1/api/member")]
 public class MemberController : ControllerBase
 {
+    // Member Repo
     private readonly IMemberRepository _memberRepository;
+    // Member event service
     private readonly IMemberIntegrationEventService _eventBus;
 
+    ///<summary>
+    /// Controller Ctor
+    ///</summary>
     public MemberController(IMemberRepository memberRepository, IMemberIntegrationEventService eventBus)
     {
         _memberRepository = memberRepository;
         _eventBus = eventBus;
     }
 
-    // POST
+    ///<summary>
+    /// This action registers members to the system.
+    ///</summary>
     [HttpPost]
     [Route("register")]
     public async Task<IActionResult> Register(MemberRegisterCreateDto model)
     {
+        // validate model
         if (!ModelState.IsValid)
             return BadRequest(new ResponseModel<DtoBase>("Request model is incorrect"));
+
+        // check user does exist by username
         if (await _memberRepository.IsMemberExist(model.Username))
             return BadRequest(new ResponseModel<DtoBase>("Member already exists!"));
-
+        
+        // register member
         var member = await _memberRepository.Register(model);
+        
+        // create member registered event
         var memberRegisteredEvent = new MemberRegisteredIntegrationEvent(member.Id, member.Username, member.Email);
-
+        // publish member registered event
         await _eventBus.PublishThroughEventBusAsync(memberRegisteredEvent);
+        //
         return CreatedAtAction(nameof(MemberProfile), new { id = member.Id }, member);
     }
 
     // GET
     [HttpPost]
-    [Route("sign-in")]
+    [Route("login")]
     public async Task<IActionResult> SignIn(MemberSignInDto model)
     {
         if (!ModelState.IsValid) return BadRequest(new ResponseModel<MemberSignInDto>("Missing parameters", model));
@@ -85,7 +103,7 @@ public class MemberController : ControllerBase
             return BadRequest(new ResponseModel<MemberUpdateDto>("Invalid parameters"));
 
         var isMemberExist = await _memberRepository.IsMemberExistById(id);
-        if(!isMemberExist) return NotFound(new ResponseModel<DtoBase>("Member does not exist!"));
+        if (!isMemberExist) return NotFound(new ResponseModel<DtoBase>("Member does not exist!"));
 
         await _memberRepository.UpdateMemberAsync(id, model);
         return Ok();
